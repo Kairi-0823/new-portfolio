@@ -1,0 +1,1193 @@
+@charset "utf-8";
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* body のデフォルト余白も明示的に消す */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  color: #00363F;
+  background-color: #F5F3F2;
+}
+
+
+
+/* -------------------------------------------------
+すべて共通
+------------------------------------------------- */
+img{
+  max-width: 100%;
+  vertical-align: bottom;
+}
+
+ul{
+  list-style: none;
+}
+
+a{
+  text-decoration: none;
+  color: #00363F;
+}
+
+.container{
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 24px;
+  max-width: 1000px;
+}
+
+h2 , .page-title{
+  font-size: 32px;
+  font-weight: normal;
+}
+
+h3{
+  font-weight: normal;
+  font-size: 20px;
+}
+
+p{
+  font-size: 16px;
+}
+
+.sec-title{
+  position: relative;
+  margin: 150px 0 64px;
+  text-align: center;
+}
+.sec-title::after{
+  content:"";
+  width: 16%;
+  height: 2px;
+  background-color: #00363F;
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+.page-title{
+  position: absolute;
+  bottom: 130px;
+  position: relative;
+  text-align: center;
+}
+.page-title::after{
+  content:"";
+  width: 16%;
+  height: 2px;
+  background-color: #00363F;
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+
+
+
+
+/* contact */
+#contact{
+  text-align: center;
+}
+
+#contact a{
+  color: white;
+  display: block;
+  background-color: #00363F;
+  padding: 24px 0;
+  font-size: 30px;
+  margin: 24px 0;
+  transition: all .3s;
+}
+
+#contact a:hover{
+  opacity: .7;
+}
+
+/* footer */
+#footer p{
+  text-align: center;
+  padding-bottom:16px ;
+  font-size: 14px;
+}
+
+
+/* -------------------------------------------------
+各種ボタン 全部で３つ
+------------------------------------------------- */
+.top-btn{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #dd8a00;
+  display:block;
+  position: fixed;
+  z-index: 100;
+  transition: all .5s;
+}
+
+.top-btn:hover{
+  background-color: #00363F;
+  scale: 1.2;
+}
+
+.more , .more2{
+  display: inline-block;
+  position: relative;
+}
+
+.arrow{
+  border-bottom: 1px solid #dd8a00;
+  position: absolute;
+  top: 50%;
+  left: 41%;
+  transform: translate(0%, -50%);
+  width: 55px;
+  text-align: left;
+  transition: all 0.5s;
+}
+
+.arrow:hover{
+  width: 100px;
+}
+
+.arrow::after{
+  content: "";
+  position: absolute;
+  width: 11px;
+  height: 1px;
+  background-color: #dd8a00;
+  top: 100%;
+  right: 0;
+  transform: rotate(45deg);
+  transform-origin: right bottom;
+
+}
+
+.more-btn{
+  color: #dd8a00;
+  width: 100%;
+}
+
+
+
+/* -------------------------------------------------
+各ページ ナビゲーション
+------------------------------------------------- */
+nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 24px;
+  position: relative;
+  z-index: 1;
+}
+
+nav ul{
+  display: flex;
+}
+
+nav ul{
+  display: flex;
+}
+
+nav ul li{
+  margin-left: 24px;
+  position: relative;
+}
+
+nav a{
+  color: white;
+}
+.wa-nav a{
+  color: #00363F;
+}
+
+nav ul li::after{
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  background-color: white;
+  width: 0;
+  height: 1px;
+  transition: all .3s ease;
+  transform:translateX(-50%);
+}
+
+.wa-nav li::after{
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  background-color: #00363F;
+  width: 0;
+  height: 1px;
+  transition: all .3s ease;
+  transform:translateX(-50%);
+}
+
+nav ul li:hover::after , .wa-nav li:hover::after{
+  width: 100%;
+}
+
+.mobile-nav{
+  display: none;
+}
+
+.mask{
+  display: none;
+}
+
+.bodyplus{
+  overflow: hidden;
+}
+
+/*モーダル本体の指定 + モーダル外側の背景の指定*/
+.modal-container{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background: rgba(0,0,0,50%);
+  overflow: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: .3s;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+
+/*モーダル本体に「active」クラス付与した時のスタイル*/
+.active2{
+  opacity: 1;
+  visibility: visible;
+}
+/*モーダル枠の指定*/
+.modal-body{
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 40%;
+  margin: 0 auto;
+  max-width: 400px;
+}
+
+.modal-open{
+  cursor: pointer;
+}
+
+/*モーダルを閉じるボタンの指定*/
+.modal-close{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: -40px;
+  right: -40px;
+  width: 40px;
+  height: 40px;
+  font-size: 40px;
+  color: #fff;
+  cursor: pointer;
+}
+/*モーダル内のコンテンツの指定*/
+.modal-content{
+  background: #fff;
+  text-align: center;
+  padding: 30px;
+}
+
+
+
+/* -------------------------------------------------
+トップ
+------------------------------------------------- */
+/* header */
+
+
+h1{
+  width: 60px;
+  height: 60px;
+}
+
+/* main */
+.mainvisual img{
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: contain;
+  object-fit: cover;
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+}
+
+.site-title img{
+  width: 45%;
+  position: absolute;
+  top:0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  display: none;
+  z-index: 1;
+}
+
+.works{
+  margin-top: 100vh;
+}
+
+.all-works , .all-works2{
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  grid-auto-rows: auto;
+  min-height: 0;
+  gap: 24px;
+  margin-bottom: 100px;
+}
+
+.all-works li{
+  display: block;
+}
+
+.all-works img{
+  width: 100%;
+}
+
+.all-works .inner , .all-works2 .inner{
+  text-align: left;
+  margin: 16px 0 0 0;
+}
+
+.type{
+  display: flex;
+}
+
+.type p:first-child{
+  border-right: 1px solid black;
+  margin-right: 16px;
+  padding-right: 16px;
+}
+
+
+/* about */
+.about-flex{
+  display: flex;
+  justify-content: space-between;
+  opacity: 0;
+  transition: all 1s;
+  transform: translateY(100px);
+}
+
+.about-text{
+  width: 60%;
+  text-align: left;
+  padding-right: 24px;
+}
+
+.my-name{
+  position: relative;
+  font-weight: bold;
+}
+.my-name::before{
+  content:"つじむら かいり";
+  position: absolute;
+  top: -16px;
+  left: 0;
+  margin-left: 16px;
+  width: 100%;
+  font-size: 14px;
+  color: #00363F;
+}
+
+.my-name::after{
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: #00363F;
+  bottom: -8px;
+  left: 0;
+}
+
+.my-name2{
+  position: relative;
+  font-weight: bold;
+}
+
+.my-name2::before{
+  content:"つじむら かいり";
+  position: absolute;
+  top: -16px;
+  left: 0;
+  margin-left: 16px;
+  width: 100%;
+  font-size: 14px;
+  color: #00363F;
+}
+
+.about-text p{
+  margin: 24px 0;
+}
+
+.about-img{
+  width:400px;
+  height: 400px;
+}
+
+.about-img img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+
+/* -------------------------------------------------
+ワークス
+------------------------------------------------- */
+/* main */
+.wa-mainvisual img{
+  background-size: cover;
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 30vh;
+  position: relative;
+  opacity: .8;
+}
+
+.wa-all-works-flex{
+  display: flex;
+  margin-top: 150px;
+}
+
+.choose{
+  width: 30%;
+  text-align: left;
+  padding-left: 120px;
+  transition: all 1s;
+}
+
+.choose ul li{
+  margin-bottom: 24px;
+  transition: all .5s;
+}
+
+.choose ul li:hover{
+  opacity: .7;
+  scale: 1.2;
+}
+
+.wa-all-works-flex .all-works{
+  width: 70%;
+}
+
+.active{
+  color: #dd8a00;
+  position: relative;
+  margin-left: 24px;
+}
+
+.active::before{
+  position: absolute;
+  content: "";
+  width: 72px;
+  height: 1px;
+  background-color: #dd8a00;
+  top: 50%;
+  right: 120%;
+}
+
+
+/* -------------------------------------------------
+アバウト
+------------------------------------------------- */
+
+/* main */
+.about-content{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 150px;
+  opacity: 0;
+  transition: all 1s;
+  transform: translateY(100px);
+}
+
+.about-img2{
+  width: 50%;
+}
+
+.about-text2{
+  width: 50%;
+  text-align: left;
+  padding-left: 56px;
+}
+
+.about-me{
+  position: relative;
+  text-align: center;
+}
+
+.about-me::before{
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 22%;
+  transform: translate(-50%, -50%);
+  width: 45%;
+  height: 1px;
+  background-color: #00363F;
+}
+
+.about-content dl{
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.about-content dd{
+  width:20%;
+  margin-bottom: 24px;
+}
+
+.about-content dt{
+  width: 80%;
+  margin-bottom: 24px;
+}
+
+
+
+/* できること・強み */
+.skill{
+  margin: 300px 0;
+  opacity: 0;
+  transition: all 2s;
+  transform: translateX(-600px);
+}
+
+.benefit{
+  opacity: 0;
+  transition: all 2s;
+  transform: translateX(600px);
+}
+
+.benefit .about-me::after , .skill .about-me::after{
+  position: absolute;
+  color: #dd8a00;
+  font-size: 180px;
+  opacity: .2;
+  font-family: "Hedvig Letters Serif", serif;
+}
+
+.skill .about-me::after{
+  content: "Skill";
+  bottom: -63px;
+  right: 150px;
+}
+
+.benefit .about-me::after{
+  content: "Benefit";
+  bottom: -63px;
+  right: 0;
+}
+
+.skill-flex , .bene-flex{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 56px;
+}
+
+.skill-inner , .bene-inner{
+  text-align: left;
+  width: 45%;
+}
+
+.skill-inner , .bene-flex h3{
+  margin-bottom: 24px;
+}
+
+.skill-inner p:nth-child(3){
+  margin-top: 24px;
+  color: #dd8a00;
+}
+
+
+
+/* -------------------------------------------------
+各種サイトページ
+------------------------------------------------- */
+.site-img{
+  margin-top: 120px;
+}
+
+.site-inner{
+  text-align: left;
+  margin-top: 16px;
+}
+
+.site-kind{
+  text-align: left;
+  margin: 150px 0 24px 60px;
+}
+
+.site-inner .type{
+  margin: 24px 0 8px 0;
+}
+
+.site-flex{
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 150px;
+}
+
+.scroll-arrow{
+  writing-mode:sideways-lr;
+  position: relative;
+  color: #dd8a00;
+  margin-right: 16px;
+}
+
+.scroll-arrow::after{
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: 300px;
+  background-color: #dd8a00;
+  top: 100px;
+  left: 0;
+  right:0;
+  margin: auto;
+}
+
+.scroll-arrow h2::after{
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 3px;
+  background-color: #dd8a00;
+  bottom: -316px;
+  left: 4px;
+  transform: rotate(45deg);
+  transform-origin:right bottom ;
+}
+
+.site-view{
+  display: flex;
+  width: 100%;
+  height: 500px;
+}
+
+.site-view-inner{
+  background-color:#cdcdcd;
+  padding: 24px;
+  overflow: auto;
+}
+
+.site-inner a{
+  text-decoration:underline;
+  color: blue;
+}
+
+.site-inner a:hover{
+  opacity: .8;
+}
+
+.site-proces{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.site-proces dt{
+  width: 20%;
+  border-bottom: 1px solid #00363f66;
+  padding: 50px;
+}
+
+.site-proces dd{
+  width: 80%;
+  border-bottom: 1px solid #00363f66;
+  text-align: left;
+  padding: 50px;
+}
+
+.plus{
+  overflow: hidden;
+}
+
+
+
+
+/* -------------------------------------------------
+レスポンシブ
+------------------------------------------------- */
+
+@media(max-width:800px){
+/* ------------------------------------------------- 
+共通
+------------------------------------------------- */
+h2 , .page-title , .my-name2{
+  font-size: 24px;
+}
+
+h3 , .about-me{
+  font-size: 18px;
+}
+
+p{
+  font-size: 14px;
+}
+
+/* contact */
+#contact a{
+  font-size: 20px;
+}
+
+/* -------------------------------------------------
+各種ボタン 全部で３つ
+------------------------------------------------- */
+.more{
+  margin-top: 64px;
+}
+
+/* .more img{
+  width: 40%;
+} */
+
+
+/* -------------------------------------------------
+各ページ ナビゲーション
+------------------------------------------------- */
+nav ul{
+  display: none;
+}
+
+.toggle-btn{
+  display: block;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  content: "";
+  position: absolute;
+  top: 30px;
+  right: 24px;
+  z-index: 20;
+}
+
+span{
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color:#00363F;
+  position: absolute;
+  transition: all .5s;
+}
+
+span:nth-child(1){
+  top: 30%;
+}
+
+span:nth-child(2){
+  top: 60%;
+}
+
+.open span:nth-child(1){
+  top: 50%;
+  transform: rotate(-45deg);
+  background-color: #dd8a00;
+}
+
+.open span:nth-child(2){
+  top: 50%;
+  transform: rotate(45deg);
+  background-color: #dd8a00;
+}
+
+.mobile-nav{
+  display: block;
+  background-color: #dd8a00;
+  position: absolute;
+  top: 0;
+  left: -190px;
+  z-index: 2;
+  padding: 200px 60px;
+  transition: all .5s;
+}
+
+.mobile-nav li{
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.mobile-nav li::after{
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  background-color: #00363F;
+  width: 0;
+  height: 1px;
+  transition: all .3s ease;
+  transform:translateX(-50%);
+}
+
+.mobile-nav li:hover::after{
+  width: 100%;
+}
+
+.open .mobile-nav{
+  left: 0;
+}
+
+.mask{
+  position: absolute;
+  top: 0;
+  right: -100vw;
+  width: 100vw;
+  height: 100vh;
+  background-color: #00363F;
+  opacity: .9;
+  transition: all 0.5s;
+  z-index: 1;
+}
+
+.open .mask{
+  display: block;
+  right: 0;
+}
+
+
+
+/* -------------------------------------------------
+トップ
+------------------------------------------------- */
+/* header */
+
+.mainvisual img{
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+}
+
+.site-title img{
+  width: 80%;
+}
+
+/* main */
+.all-works{
+  grid-template-columns: none;
+  gap: 56px;
+  margin-bottom: 64px;
+}
+
+
+
+/* about */
+.about-flex{
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+}
+
+.about-text{
+  width: 100%;
+}
+
+.about-text p{
+  margin: 24px 0;
+}
+
+.more2{
+  text-align: center;
+}
+
+.more2 .more-btn{
+  left: 50%;
+}
+
+.about-img{
+  width:280px;
+  height: 280px;
+  margin: 0 auto;
+  margin-bottom: 24px;
+}
+
+.about-img img{
+  border-radius: 50%;
+}
+
+.my-name::before{
+  margin-left: 10px;
+  font-size: 10px;
+}
+
+
+/* -------------------------------------------------
+ワークス
+------------------------------------------------- */
+/* header */
+.wa-mainvisual img{
+  background-size: cover;
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 12vh;
+  position: relative;
+  opacity: .8;
+}
+
+
+
+/* main */
+.wa-all-works-flex{
+  flex-direction: column;
+  margin-top: 120px;
+}
+
+.choose{
+  width: 100%;
+  padding-left: 32px;
+
+}
+
+.wa-all-works-flex .all-works{
+  width: 100%;
+}
+
+.page-title{
+  bottom: 72px;
+}
+.page-title::after{
+  content:"";
+  width: 16%;
+  height: 2px;
+  background-color: #00363F;
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+.modal-body{
+  max-width:80%;
+  width: 100%;
+}
+
+
+
+
+/* -------------------------------------------------
+アバウト
+------------------------------------------------- */
+
+
+/* main */
+.about-content{
+  flex-direction: column;
+  margin-top: 0;
+}
+
+.about-img2{
+  width: 60%;
+  margin-top: 64px;
+}
+.about-img2 img{
+  border-radius: 50%;
+}
+
+.about-text{
+  text-align:center;
+}
+.about-text h2 , .about-text p{
+  text-align:left;
+}
+
+.my-name2::before{
+  content:"つじむら かいり";
+  position: absolute;
+  top: -10px;
+  left: 0;
+  margin-left: 8px;
+  width: 100%;
+  font-size: 11px;
+  color: #00363F;
+}
+
+.about-text2{
+  width: 100%;
+  margin-top: 32px;
+}
+
+.about-me{
+  position: relative;
+  text-align: center;
+  padding-left: 32px;
+}
+
+.about-me::before{
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 22%;
+  transform: translate(-50%, -50%);
+  width: 45%;
+  height: 1px;
+  background-color: #00363F;
+}
+
+.about-content dl{
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.about-content dd{
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+
+.about-content dt{
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+
+
+
+/* できること・強み */
+.skill{
+  margin: 150px 0;
+}
+
+.benefit .about-me::after , .skill .about-me::after{
+  font-size: 100px;
+  opacity: .2;
+}
+
+.skill .about-me::after{
+  bottom: -30px;
+  right: 50px;
+}
+
+.benefit .about-me::after{
+  bottom: -30px;
+}
+
+.skill-flex , .bene-flex{
+  flex-direction: column;
+  margin-top: 56px;
+}
+
+.skill-inner , .bene-inner{
+  width: 100%;
+}
+
+.skill-inner , .bene-inner{
+  margin-bottom: 56px;
+}
+
+.skill-flex h3 , .bene-flex h3 , .bene-flex p{
+  margin-bottom:24px ;
+}
+
+.skill-inner p:nth-child(3){
+  margin-top: 16px;
+}
+
+
+
+/* -------------------------------------------------
+各種サイトページ
+------------------------------------------------- */
+.site-img{
+  margin-top: 48px;
+}
+
+.site-kind{
+  text-align: left;
+  margin: 120px 0 16px 0px;
+}
+
+.site-inner .type{
+  margin: 24px 0 8px 0;
+}
+
+.site-flex{
+  margin-bottom: 120px;
+}
+
+.scroll-arrow{
+  margin-right: 8px;
+}
+
+.scroll-arrow::after{
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: 150px;
+  background-color: #dd8a00;
+  top: 80px;
+}
+
+.scroll-arrow h2::after{
+  width: 16px;
+  bottom: -170px;
+  left: 2px;
+}
+
+.site-view{
+  display: flex;
+  width: 100%;
+  height: 250px;
+}
+
+.site-view-inner{
+  background-color:#cdcdcd;
+  padding: 16px;
+  overflow: auto;
+}
+
+.site-proces{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+dd , dt{
+  font-size: 14px;
+}
+
+.site-proces dt{
+  width: 25%;
+  border-bottom: 1px solid #00363f66;
+  padding: 48px 0;
+}
+
+.site-proces dd{
+  width: 75%;
+  border-bottom: 1px solid #00363f66;
+  text-align: left;
+  padding: 48px 24px;
+}
+}
